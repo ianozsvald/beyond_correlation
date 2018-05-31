@@ -6,7 +6,7 @@ The goal is to see if we can better understand the data in a DataFrame by learni
 
 By default it assumes every target column is a regression challenge. You can provide a list of columns to treat as classification challenges.
 
-![alt text](example_titanic_output)
+![alt text](example_titanic_output.png)
 
 # TODO
 
