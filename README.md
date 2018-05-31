@@ -10,7 +10,16 @@ By default it assumes every target column is a regression challenge. You can pro
 
 ## Titanic example
 
-Here's an example output from 
+* Embarked (classification) is predicted well by Fare, also by Age
+* Pclass (regression) is predicted by Fare
+* Fare (regression) is poorly predicted by Pclass
+* Sex (classification) is predicted well by Survived
+* Survived (classification) is predicted well by Sex, Fare, Pclass, SibSpParch
+* SibSp, Parch and SibSpParch (the sum of both) each predict each other
+
+![alt text](example_titanic_output.png)
+
+This is generated using:
 ```
 df = pd.read_csv("titanic_train.csv")
 ...
@@ -22,18 +31,6 @@ df_results.pivot(index='target', columns='feature', values='score').fillna(1) \
 .style.background_gradient(cmap="viridis", low=0.3, high=0.0, axis=1) \
 .set_precision(2)
 ```
-
-Notably:
-
-* Embarked (classification) is predicted well by Fare, also by Age
-* Pclass (regression) is predicted by Fare
-* Fare (regression) is poorly predicted by Pclass
-* Sex (classification) is predicted well by Survived
-* Survived (classification) is predicted well by Sex, Fare, Pclass, SibSpParch
-* SibSp, Parch and SibSpParch (the sum of both) each predict each other
-
-![alt text](example_titanic_output.png)
-
 # Requirements
 
 * scikit-learn (0.19+)
