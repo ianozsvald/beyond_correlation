@@ -39,8 +39,9 @@ df_results.pivot(index='target', columns='feature', values='score').fillna(1) \
 
 # TODO
 
-  * how many nans dropped?
-  * use auc not accuracy for classifier
+* how many nans dropped?
+* use auc not accuracy for classifier
+* for Titanic graph some of these relationships
 
 # Note to Ian
 
