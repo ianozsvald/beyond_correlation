@@ -13,8 +13,11 @@ def labelencode_if_object(df_ml):
             df_ml[col] = replacement_series
     return df_ml
 
-def discover(cols, classifier_overrides, df):
+def discover(df, classifier_overrides=None):
     estimator_mapping = {}
+    cols = df.columns
+    if classifier_overrides is None:
+        classifier_overrides = []
     for col in cols:
         if col in classifier_overrides:
             est = RandomForestClassifier()
@@ -69,6 +72,6 @@ if __name__ == "__main__":
     X = pd.DataFrame({'a': np.ones(10),
                       'b': np.arange(0, 10),
                       'c': np.arange(0, 20, 2)})
-    df_results = discover(X.columns, [], X)
+    df_results = discover(X)
     print(df_results)
     assert (df_results.query("feature=='b' and target=='a'")['score'].iloc[0]) == 1, "Expect b to predict a"
