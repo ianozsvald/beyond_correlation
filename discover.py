@@ -1,6 +1,6 @@
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, KFold, cross_val_score
 import pandas as pd
 
 def labelencode_if_object(df_ml):
@@ -45,14 +45,30 @@ def discover(cols, classifier_overrides, df):
             assert df_X.isnull().sum().sum() == 0
             assert df_y.isnull().sum() == 0
 
-            X_train, X_test, y_train, y_test = train_test_split(df_X, df_y, test_size=0.33, random_state=0)
-
-            #print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
-
-            est.fit(X_train, y_train)
-            score = est.score(X_test, y_test)
+            #if False:
+            #    # no cross validation
+            #    X_train, X_test, y_train, y_test = train_test_split(df_X, df_y, test_size=0.33, random_state=0)
+            #    #print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
+            #    est.fit(X_train, y_train)
+            #    score = est.score(X_test, y_test)
+            
+            # cross validation
+            scores = cross_val_score(est, df_X, df_y)
+            score = scores.mean()
+            score = max(score, 0) # set negative r^2 to 0
+                
             d = {'feature': feature, 'target': target, 'score': score}
             ds.append(d)
 
     df_results = pd.DataFrame(ds)
     return df_results
+
+if __name__ == "__main__":
+    # simple test to make sure the code is running
+    import numpy as np
+    X = pd.DataFrame({'a': np.ones(10),
+                      'b': np.arange(0, 10),
+                      'c': np.arange(0, 20, 2)})
+    df_results = discover(X.columns, [], X)
+    print(df_results)
+    assert (df_results.query("feature=='b' and target=='a'")['score'].iloc[0]) == 1, "Expect b to predict a"

@@ -6,7 +6,7 @@ The goal is to see if we can better understand the data in a DataFrame by learni
 
 Rather than just learning which column(s) predict a target column, we might want to know what other relationships exist (e.g. during Exploratory Data Analysis) and whether some predictive features are driven by other less-predictive features (to help us find new & better features or data sources). We might also sense-check out data by checking that certain relationships exist.
 
-By default it assumes every target column is a regression challenge. You can provide a list of columns to treat as classification challenges.
+By default it assumes every target column is a regression challenge. You can provide a list of columns to treat as classification challenges. For regression we cap negative scores at 0 (r^2 can be arbitrarily negative, we cap at 0 to make this a little easier to interpret).
 
 ## Titanic example
 
@@ -52,6 +52,11 @@ df_results.pivot(index='target', columns='feature', values='score').fillna(1) \
 * scikit-learn (0.19+)
 * pandas
 * jupyter notebook
+
+# Tests
+
+* Run `discover.py` for a simple test that the code is working 
+* Run `pytest` to run `test_discover.py` for a single unit test (use `pytest -s` to see `print` outputs)
 
 # TODO
 
