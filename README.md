@@ -10,6 +10,8 @@ By default it assumes every target column is a regression challenge. You can pro
 
 ## Titanic example
 
+[Titanic Notebook](./example_titanic_discover_feature_relationships.ipynb)
+
 * Embarked (classification) is predicted well by Fare, also by Age
 * Pclass (regression) is predicted by Fare but Fare (regression) is poorly predicted by Pclass
 * Sex (classification) is predicted well by Survived
