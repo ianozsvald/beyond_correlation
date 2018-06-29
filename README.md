@@ -1,18 +1,17 @@
 # discover_feature_relationships
 
-Attempt to discover 1D relationships between all columns in a DataFrame using scikit-learn (RandomForests). 
+Attempt to discover 1D relationships between all columns in a DataFrame using scikit-learn (RandomForests) and standard correlation tests (Pearson, Spearman and Kendall via Pandas). 
 
-The goal is to see if we can better understand the data in a DataFrame by learning which features (1 column at a time) predict each other column. This code attempts to learn a predictive relationship between the Cartesian product (all pairs of columns) of all columns.
+The goal is to see if we can better understand the data in a DataFrame by learning which features (1 column at a time) predict each other column. This code attempts to learn a predictive relationship between the Cartesian product (all pairs) of all columns.
 
 Rather than just learning which column(s) predict a target column, we might want to know what other relationships exist (e.g. during Exploratory Data Analysis) and whether some predictive features are driven by other less-predictive features (to help us find new & better features or data sources). We might also sense-check out data by checking that certain relationships exist.
 
-By default it assumes every target column is a regression challenge. You can provide a list of columns to treat as classification challenges. For regression we cap negative scores at 0 (r^2 can be arbitrarily negative, we cap at 0 to make this a little easier to interpret).
+By default it assumes every target column is a regression challenge. You can provide a list of columns to treat as classification challenges. For regression we cap negative scores at 0 (r^2 can be arbitrarily negative, we cap at 0 to make this a little easier to interpret). Text-encoded columns are automatically LabelEncoded (this is a sensible default but may not reveal information in your case, you might need to provide your own smarter encoding).
 
 ## Titanic example
 
 * Embarked (classification) is predicted well by Fare, also by Age
-* Pclass (regression) is predicted by Fare
-* Fare (regression) is poorly predicted by Pclass
+* Pclass (regression) is predicted by Fare but Fare (regression) is poorly predicted by Pclass
 * Sex (classification) is predicted well by Survived
 * Survived (classification) is predicted well by Sex, Fare, Pclass, SibSpParch
   * Predicting this feature at circa 0.62 is equivalent to "no information" as 0.62 is the mean of Survived
@@ -36,16 +35,13 @@ df_results.pivot(index='target', columns='feature', values='score').fillna(1) \
 
 ## Boston example
 
-* CRIM is predicted by NOX
-* DIS is predicted by INDUS and NOX
-* INDUS is very well predicted by NOX
-* NOX is reasonable well predicted by INDUS, also by TAX
-* PTRATIO is predicted by INDUS and NOX
-* RAD seems to be very highly predicted by INDUS and NOX and TAX and almost as well by PTRATIO - why is this?
-* TAX is highly predicted by INDUS and NOX, also PTRATIO and RAD
-* target is lightly predicted by LSTAT, NOX, RM, TAX and PTRATIO
+[Boston Notebook](./example_boston.ipynb)
 
-
+* NOX predicts AGE and DIS (but not the other way around)
+* target predicts LSTAT, LSTAT weakly predicts target, LSTAT weakly predicts RM
+* DIS predicts AGE, AGE weakly predicts DIS
+* INDUS predicts CRIM and somewhat AGE, B
+* target weakly predicts RM, RM weakly predicts target
 
 # Requirements
 

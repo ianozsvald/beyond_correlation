@@ -13,7 +13,10 @@ def labelencode_if_object(df_ml):
             df_ml[col] = replacement_series
     return df_ml
 
-def discover(df, classifier_overrides=None):
+def discover(df, classifier_overrides=None, method="rf"):
+    corr_methods = ["pearson", 'spearman', 'kendall']
+    known_methods = corr_methods + ['rf']
+    assert method in set(known_methods), f"Expecting method to be one of: {known_methods}"
     estimator_mapping = {}
     cols = df.columns
     if classifier_overrides is None:
@@ -55,10 +58,16 @@ def discover(df, classifier_overrides=None):
             #    est.fit(X_train, y_train)
             #    score = est.score(X_test, y_test)
             
-            # cross validation
-            scores = cross_val_score(est, df_X, df_y)
-            score = scores.mean()
-            score = max(score, 0) # set negative r^2 to 0
+            score = 0
+            if method=="rf":
+                # cross validation
+                scores = cross_val_score(est, df_X, df_y)
+                score = scores.mean()
+                score = max(score, 0) # set negative r^2 to 0
+            if method in set(corr_methods):
+                pair = df_ml[[feature, target]]
+                assert pair.shape[1] == 2
+                score = pair.corr(method=method)[feature][target]
                 
             d = {'feature': feature, 'target': target, 'score': score}
             ds.append(d)
@@ -70,8 +79,13 @@ if __name__ == "__main__":
     # simple test to make sure the code is running
     import numpy as np
     X = pd.DataFrame({'a': np.ones(10),
+                      #'a': [1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
                       'b': np.arange(0, 10),
                       'c': np.arange(0, 20, 2)})
     df_results = discover(X)
     print(df_results)
     assert (df_results.query("feature=='b' and target=='a'")['score'].iloc[0]) == 1, "Expect b to predict a"
+    
+    df_results = discover(X, method="kendall")
+    print(df_results)
+    assert (df_results.query("feature=='b' and target=='c'")['score'].iloc[0]) >= 0.99, "Expect b to predict c"
