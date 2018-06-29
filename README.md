@@ -35,7 +35,7 @@ df_results.pivot(index='target', columns='feature', values='score').fillna(1) \
 
 ## Boston example
 
-[Boston Notebook](./example_boston.ipynb)
+[Boston Notebook](./example_boston_discover_feature_relationships.ipynb)
 
 * NOX predicts AGE and DIS (but not the other way around)
 * target predicts LSTAT, LSTAT weakly predicts target, LSTAT weakly predicts RM
