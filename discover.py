@@ -23,9 +23,9 @@ def discover(df, classifier_overrides=None, method="rf"):
         classifier_overrides = []
     for col in cols:
         if col in classifier_overrides:
-            est = RandomForestClassifier()
+            est = RandomForestClassifier(n_estimators=50)
         else:
-            est = RandomForestRegressor()
+            est = RandomForestRegressor(n_estimators=50)
         estimator_mapping[col] = est
     
     ds = []
@@ -58,12 +58,12 @@ def discover(df, classifier_overrides=None, method="rf"):
             #    est.fit(X_train, y_train)
             #    score = est.score(X_test, y_test)
             
-            score = 0
+            score = 0.0
             if method=="rf":
                 # cross validation
-                scores = cross_val_score(est, df_X, df_y)
+                scores = cross_val_score(est, df_X, df_y, cv=3)#, n_jobs=-1)
                 score = scores.mean()
-                score = max(score, 0) # set negative r^2 to 0
+                #score = max(score, 0.0) # set negative r^2 to 0
             if method in set(corr_methods):
                 pair = df_ml[[feature, target]]
                 assert pair.shape[1] == 2
