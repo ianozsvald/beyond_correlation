@@ -6,7 +6,14 @@ The goal is to see if we can better understand the data in a DataFrame by learni
 
 Rather than just learning which column(s) predict a target column, we might want to know what other relationships exist (e.g. during Exploratory Data Analysis) and whether some predictive features are driven by other less-predictive features (to help us find new & better features or data sources). We might also sense-check out data by checking that certain relationships exist.
 
-By default it assumes every target column is a regression challenge. You can provide a list of columns to treat as classification challenges. For regression we cap negative scores at 0 (r^2 can be arbitrarily negative, we cap at 0 to make this a little easier to interpret). Text-encoded columns are automatically LabelEncoded (this is a sensible default but may not reveal information in your case, you might need to provide your own smarter encoding).
+By default it assumes every target column is a regression challenge. You can provide a list of columns to treat as classification challenges. For regression we cap negative scores at 0 (r^2 can be arbitrarily negative, we cap at 0 to make this a little easier to interpret). 
+
+Text-encoded columns are automatically LabelEncoded (this is a sensible default but may not reveal information in your case, you might need to provide your own smarter encoding). This adds to the correlation plots in YellowBrick and Pandas Profiling where the text columns are not auto-encoded.
+
+We might want to use this tool alongside:
+
+* https://github.com/ResidentMario/missingno
+* https://github.com/pandas-profiling/pandas-profiling
 
 ## Titanic example
 
