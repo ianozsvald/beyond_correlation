@@ -10,4 +10,4 @@ def test1():
     df_results = discover(X)
     print(df_results)
     assert (df_results.query("feature=='b' and target=='a'")['score'].iloc[0]) == 1, "Expect b to predict a"
-    assert (df_results.query("feature=='a' and target=='b'")['score'].iloc[0]) == 0, "Expect a not to predict b" 
+    assert (df_results.query("feature=='a' and target=='b'")['score'].iloc[0]) <= 0, "Expect a not to predict b"

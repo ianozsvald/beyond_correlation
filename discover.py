@@ -14,6 +14,8 @@ def labelencode_if_object(df_ml):
     return df_ml
 
 def discover(df, classifier_overrides=None, method="rf"):
+    print("something clever")
+    1/0
     corr_methods = ["pearson", 'spearman', 'kendall']
     known_methods = corr_methods + ['rf']
     assert method in set(known_methods), f"Expecting method to be one of: {known_methods}"
@@ -27,7 +29,7 @@ def discover(df, classifier_overrides=None, method="rf"):
         else:
             est = RandomForestRegressor(n_estimators=50)
         estimator_mapping[col] = est
-    
+
     ds = []
     for idx_Y, target in enumerate(cols):
         est = estimator_mapping[target]
@@ -57,7 +59,7 @@ def discover(df, classifier_overrides=None, method="rf"):
             #    #print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
             #    est.fit(X_train, y_train)
             #    score = est.score(X_test, y_test)
-            
+
             score = 0.0
             if method=="rf":
                 # cross validation
@@ -68,7 +70,7 @@ def discover(df, classifier_overrides=None, method="rf"):
                 pair = df_ml[[feature, target]]
                 assert pair.shape[1] == 2
                 score = pair.corr(method=method)[feature][target]
-                
+
             d = {'feature': feature, 'target': target, 'score': score}
             ds.append(d)
 
@@ -85,7 +87,7 @@ if __name__ == "__main__":
     df_results = discover(X)
     print(df_results)
     assert (df_results.query("feature=='b' and target=='a'")['score'].iloc[0]) == 1, "Expect b to predict a"
-    
+
     df_results = discover(X, method="kendall")
     print(df_results)
     assert (df_results.query("feature=='b' and target=='c'")['score'].iloc[0]) >= 0.99, "Expect b to predict c"
