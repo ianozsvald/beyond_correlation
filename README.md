@@ -63,14 +63,6 @@ df_results.pivot(index='target', columns='feature', values='score').fillna(1) \
 * Run `discover.py` for a simple test that the code is working 
 * Run `pytest` to run `test_discover.py` for a single unit test (use `pytest -s` to see `print` outputs)
 
-# TODO
-
-* how many nans dropped?
-* use auc not accuracy for classifier
-* for Titanic graph some of these relationships
-* add `all_1s_` additional column to simulate "no information"
-* use CV rather than train_test_split
-
 # Note to Ian
 
 Environment: `. ~/anaconda3/bin/activate discover_feature_relationships`
