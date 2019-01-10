@@ -10,6 +10,9 @@ doclines = __doc__.split("\n")
 with io.open('discover_feature_relationships/__init__.py', 'rt', encoding='utf8') as f:
     version = re.search(r'__version__ = \'(.*?)\'', f.read()).group(1)
 
+# stolen from https://packaging.python.org/tutorials/packaging-projects/
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
 # Chosen from http://www.python.org/pypi?:action=list_classifiers
 classifiers = """\
@@ -36,8 +39,7 @@ setup(
     maintainer="Ian Ozsvald",
     maintainer_email="ian@ianozsvald.com",
     description=doclines[0],
-    long_description = """TODO
-    """,
+    long_description = long_description,
     long_description_content_type='text/markdown',
     classifiers=filter(None, classifiers.split("\n")),
     platforms=["Any."],

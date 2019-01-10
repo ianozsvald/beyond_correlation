@@ -15,6 +15,10 @@ We might want to use this tool alongside:
 * https://github.com/ResidentMario/missingno
 * https://github.com/pandas-profiling/pandas-profiling
 
+The project (and the examples) live on GitHub:
+
+* https://github.com/ianozsvald/discover_feature_relationships
+
 ## Titanic example
 
 [Titanic Notebook](./example_titanic_discover_feature_relationships.ipynb)
@@ -27,7 +31,7 @@ We might want to use this tool alongside:
 * SibSpParch is predicted by both SibSp and Parch (SibSpParch is the sum of both - it is an engineered additional feature) - it is also predicted by Fare
 * SibSp and Parch are also predicted by Fare (but less well so than by SibSpParch)
 
-![alt text](example_titanic_output.png)
+![alt text](examples/example_titanic_output.png)
 
 This is generated using:
 ```
@@ -70,7 +74,9 @@ conda install -c conda-forge watermark
 
 ## Install from PyPI
 
-TODO
+`pip install discover_feature_relationships`
+
+https://pypi.org/project/discover-feature-relationships/
 
 ## Install from source
 
@@ -82,12 +88,22 @@ First check-out from GitHub, then install with ```python setup.py install```, th
 * Run `discover.py` for a simple test that the code is working 
 * Run `pytest` to run `test_discover.py` for a single unit test (use `pytest -s` to see `print` outputs)
 
-# Note to Ian
+# Note to Ian for Development
 
 Environment: `. ~/anaconda3/bin/activate discover_feature_relationships`
 
 ## Installer
 
+To push to PyPI I need to follow https://docs.python.org/3/distributing/index.html#distributing-index - specifically `python se
+tup.py sdist bdist_wheel` and `twine upload dist/*`. This uses https://pypi.org/project/twine/ .
+
+## TODO
+
 * consider version info: https://github.com/pallets/flask/blob/master/setup.py
 * consider python_requires line in setup
 * consider adding dependencies
+* add dependencies to setup
+* clean up the list of links
+* bump version nbr
+* add conda installer
+
