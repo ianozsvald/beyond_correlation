@@ -54,9 +54,28 @@ df_results.pivot(index='target', columns='feature', values='score').fillna(1) \
 
 # Requirements
 
+* python 3.6+
 * scikit-learn (0.19+)
 * pandas
 * jupyter notebook
+* matplotlib
+* seaborn
+
+```
+conda install scikit-learn pandas jupyter pytest seaborn
+conda install -c conda-forge watermark
+```
+
+# Setup
+
+## Install from PyPI
+
+TODO
+
+## Install from source
+
+First check-out from GitHub, then install with ```python setup.py install```, then `cd` into the `examples` folder and run the Notebooks.
+
 
 # Tests
 
@@ -67,3 +86,8 @@ df_results.pivot(index='target', columns='feature', values='score').fillna(1) \
 
 Environment: `. ~/anaconda3/bin/activate discover_feature_relationships`
 
+## Installer
+
+* consider version info: https://github.com/pallets/flask/blob/master/setup.py
+* consider python_requires line in setup
+* consider adding dependencies
