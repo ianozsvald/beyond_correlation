@@ -21,7 +21,7 @@ The project (and the examples) live on GitHub:
 
 ## Titanic example
 
-[Titanic Notebook](./example_titanic_discover_feature_relationships.ipynb)
+[Titanic Notebook](./examples/example_titanic_discover_feature_relationships.ipynb)
 
 * Embarked (classification) is predicted well by Fare, also by Age
 * Pclass (regression) is predicted by Fare but Fare (regression) is poorly predicted by Pclass
@@ -48,7 +48,7 @@ df_results.pivot(index='target', columns='feature', values='score').fillna(1) \
 
 ## Boston example
 
-[Boston Notebook](./example_boston_discover_feature_relationships.ipynb)
+[Boston Notebook](./examples/example_boston_discover_feature_relationships.ipynb)
 
 * NOX predicts AGE and DIS (but not the other way around)
 * target predicts LSTAT, LSTAT weakly predicts target, LSTAT weakly predicts RM
