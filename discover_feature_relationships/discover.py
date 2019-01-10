@@ -1,3 +1,4 @@
+"""Main discovery process for feature relationships"""
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 from sklearn.model_selection import train_test_split, KFold, cross_val_score
@@ -14,8 +15,7 @@ def labelencode_if_object(df_ml):
     return df_ml
 
 def discover(df, classifier_overrides=None, method="rf"):
-    print("something clever")
-    1/0
+    """TODO describe what we're doing here"""
     corr_methods = ["pearson", 'spearman', 'kendall']
     known_methods = corr_methods + ['rf']
     assert method in set(known_methods), f"Expecting method to be one of: {known_methods}"
