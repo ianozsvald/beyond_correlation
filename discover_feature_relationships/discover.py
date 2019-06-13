@@ -14,7 +14,7 @@ def labelencode_if_object(df_ml):
             df_ml[col] = replacement_series
     return df_ml
 
-def discover(df, classifier_overrides=None, method="rf"):
+def discover(df, classifier_overrides=None, method="rf", random_state=None):
     """TODO describe what we're doing here"""
     corr_methods = ["pearson", 'spearman', 'kendall']
     known_methods = corr_methods + ['rf']
@@ -25,9 +25,9 @@ def discover(df, classifier_overrides=None, method="rf"):
         classifier_overrides = []
     for col in cols:
         if col in classifier_overrides:
-            est = RandomForestClassifier(n_estimators=50)
+            est = RandomForestClassifier(n_estimators=50, random_state=random_state)
         else:
-            est = RandomForestRegressor(n_estimators=50)
+            est = RandomForestRegressor(n_estimators=50, random_state=random_state)
         estimator_mapping[col] = est
 
     ds = []
