@@ -39,11 +39,10 @@ setup(
     maintainer="Ian Ozsvald",
     maintainer_email="ian@ianozsvald.com",
     description=doclines[0],
-    long_description = long_description,
+    long_description=long_description,
     long_description_content_type='text/markdown',
-    classifiers=filter(None, classifiers.split("\n")),
+    classifiers=classifiers.split("\n"),
     platforms=["Any."],
     packages=find_packages(),
-    #install_requires=['']
 )
 
