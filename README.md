@@ -74,6 +74,15 @@ conda install scikit-learn pandas jupyter pytest seaborn
 conda install -c conda-forge watermark
 ```
 
+# Thanks 
+
+Thanks to the following colleagues for renaming the project, adding a third example and improving the code at the Man AHL 2019 hackathon:
+
+* https://github.com/PauleGef
+* https://github.com/valmal
+* https://github.com/erdincmutlu
+* https://github.com/Stefannn
+
 # Setup
 
 ## Install from PyPI
