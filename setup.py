@@ -7,7 +7,7 @@ import re
 doclines = __doc__.split("\n")
 
 # stolen from: https://github.com/pallets/flask/blob/master/setup.py
-with io.open('discover_feature_relationships/__init__.py', 'rt', encoding='utf8') as f:
+with io.open('beyond_correlation/__init__.py', 'rt', encoding='utf8') as f:
     version = re.search(r'__version__ = \'(.*?)\'', f.read()).group(1)
 
 # stolen from https://packaging.python.org/tutorials/packaging-projects/
@@ -30,10 +30,10 @@ Topic :: Software Development :: Testing
 
 from setuptools import setup, find_packages
 setup(
-    name="discover_feature_relationships",
+    name="beyond_correlation",
     version=version,
     license='MIT',
-    url="https://github.com/ianozsvald/discover_feature_relationships",
+    url="https://github.com/ianozsvald/beyond_correlation",
     author="Ian Ozsvald",
     author_email="ian@ianozsvald.com",
     maintainer="Ian Ozsvald",

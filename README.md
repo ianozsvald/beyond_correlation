@@ -1,6 +1,6 @@
 # beyond_correlation
 
-**NOTE** this project has been **renamed** from `discover_feature_relationships` to `beyond_correlation`, we need to update the code to reflect this name change :-)
+**NOTE** this project has been **renamed** from `discover_feature_relationships` to `beyond_correlation`. Please check the updated examples. Pypi/Conda packages have not been created/updated.
 
 Attempt to discover 1D relationships between all columns in a DataFrame using scikit-learn (RandomForests) and standard correlation tests (Pearson, Spearman and Kendall via Pandas). 
 
@@ -19,7 +19,7 @@ We might want to use this tool alongside:
 
 The project (and the examples) live on GitHub:
 
-* https://github.com/ianozsvald/discover_feature_relationships
+* https://github.com/ianozsvald/beyond_correlation
 
 Information on the number of dropped columns per (feature, target) tuple can be returned upon request.
 
@@ -42,8 +42,8 @@ This is generated using:
 df = pd.read_csv("titanic_train.csv")
 ...
 
-import discover
-df_results = discover.discover(cols, classifier_overrides, df)
+import beyond_correlation as bc
+df_results = bc.discover(cols, classifier_overrides, df)
 
 df_results.pivot(index='target', columns='feature', values='score').fillna(1) \
 .style.background_gradient(cmap="viridis", low=0.3, high=0.0, axis=1) \
