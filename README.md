@@ -21,6 +21,8 @@ The project (and the examples) live on GitHub:
 
 * https://github.com/ianozsvald/discover_feature_relationships
 
+Information on the number of dropped columns per (feature, target) tuple can be returned upon request.
+
 ## Titanic example
 
 [Titanic Notebook](./examples/example_titanic_discover_feature_relationships.ipynb)
