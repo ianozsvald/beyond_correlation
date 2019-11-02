@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from discover_feature_relationships.discover import discover
+from beyond_correlation.discover import discover
 
 def test1():
     """Exercise a 3 column dataframe to check 2 relationships"""
