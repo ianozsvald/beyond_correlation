@@ -101,7 +101,7 @@ conda create -n hackathon_ipython_memory_usage python=3.7
 conda activate hackathon_ipython_memory_usage
 # note needed # conda install ipython numpy memory_profiler
 
-conda install scikit-learn pandas jupyter
+conda install scikit-learn pandas jupyter seaborn watermark
 
 
 mkdir hackathon_ipython_memory_usage
