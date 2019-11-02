@@ -82,6 +82,7 @@ Thanks to the following colleagues for renaming the project, adding a third exam
 * https://github.com/valmal
 * https://github.com/erdincmutlu
 * https://github.com/Stefannn
+* Elices
 
 # Setup
 
