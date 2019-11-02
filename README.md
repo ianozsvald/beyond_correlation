@@ -1,4 +1,6 @@
-# discover_feature_relationships
+# beyond_correlation
+
+**NOTE** this project has been **renamed** from `discover_feature_relationships` to `beyond_correlation`, we need to update the code to reflect this name change :-)
 
 Attempt to discover 1D relationships between all columns in a DataFrame using scikit-learn (RandomForests) and standard correlation tests (Pearson, Spearman and Kendall via Pandas). 
 
