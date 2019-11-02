@@ -90,6 +90,31 @@ First check-out from GitHub, then install with ```python setup.py install```, th
 * Run `discover.py` for a simple test that the code is working 
 * Run `pytest` to run `test_discover.py` for a single unit test (use `pytest -s` to see `print` outputs)
 
+# Developer installation notes
+
+These notes are for the Man AHL Hackathon 2019
+
+
+```
+# use the same environment as we used for the previous session
+conda create -n hackathon_ipython_memory_usage python=3.7
+conda activate hackathon_ipython_memory_usage
+# note needed # conda install ipython numpy memory_profiler
+
+conda install scikit-learn pandas jupyter
+
+
+mkdir hackathon_ipython_memory_usage
+cd hackathon_ipython_memory_usage/
+# FORK this repo to your own account
+# and then UPDATE the line below for your own git checkout
+git clone git@github.com:ianozsvald/beyond_correlation.git
+
+# note "develop" and not the usual "install" here, to make the local folder editable!
+python setup.py develop 
+
+```
+
 # Note to Ian for Development
 
 Environment: `. ~/anaconda3/bin/activate discover_feature_relationships`
